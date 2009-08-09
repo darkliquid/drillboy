@@ -1,0 +1,10 @@
+A clone of Mr. Driller as a way of:
+
+ * practicing my C++
+ * practicing games programming
+ * learning ClanLib 2
+
+I'll start off focusing on just the game engine, then I'll look into
+stuff like intro screens, attract modes, options menus, etc.
+
+Aiming to make this cross-platform, but who knows how it will turn out.
