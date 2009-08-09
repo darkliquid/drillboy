@@ -2,6 +2,7 @@
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include <ClanLib/gl1.h> // required to use gl1 render target
+#include <ClanLib/sdl.h>
 
 // Include class prototype
 #include "game_runner.h"
@@ -13,7 +14,13 @@ int GameRunner::main(const std::vector<CL_String> &args) {
 	// We never actually use these variables again.
 	CL_SetupCore setup_core;
 	CL_SetupDisplay setup_display;
-	CL_SetupGL1 setup_gl1; // use gl1 as opengl2 target breaks for me
+	//CL_SetupGL1 setup_gl1; // use gl1 as opengl2 target breaks for me
+  CL_SetupSDL setup_sdl; // use sdl as render target
+	
+	// Set the window description
+  CL_DisplayWindowDescription desc;
+  desc.set_title("Drillboy");
+  desc.set_size(CL_Size(800, 600), true);
 
 	// Lets actually make a window now called Drillboy 800x600
 	CL_DisplayWindow window("Drillboy", 800, 600);
