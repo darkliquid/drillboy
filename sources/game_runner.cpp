@@ -6,6 +6,7 @@
 
 // Include class prototype
 #include "game_runner.h"
+#include "game_engine.h"
 
 int GameRunner::main(const std::vector<CL_String> &args) {
 	// Initialise clanlib by instanciating these classes.
@@ -38,29 +39,15 @@ int GameRunner::main(const std::vector<CL_String> &args) {
 	// Before game loop begins, set screen to black via graphics context
 	graphics.clear(CL_Colorf::black); // shortcut for CL_Colorf c(0,0,0)
 
+  GameEngine engine(window, graphics, keyboard);
+
+  bool running = true;
+
 	// infinite loop to run the game
-	while(true) {
-		// check if the keyboard has escape pressed
-		if(keyboard.get_keycode(CL_KEY_ESCAPE)) {
-			// Output to console to say exit request received
-			CL_Console::write_line("Escape pressed, exiting...");
-			break; // get out of the infinite loop
-		}
-
-		// swap the graphics buffers as everything is drawn
-		// off-screen by default (and rightly so)
-		// this is controlled by the window, not the graphics context
-		window.flip();
-
-		// Process events from the OS windowing system,
-		// like closing the window, etc (GUESSING, not clear from docs)
-		CL_DisplayMessageQueue::process();
-
-		// This loop will take 100% CPU time as it's looping
-		// as fast as the system will allow. Make it sleep a
-		// bit so it's nicer to other processes
-		CL_System::sleep(10);
-	}
+	while(running) {
+	  // Run the game engine
+	  running = engine.run();
+  }
 
 	// if we're this far, game finished running successfully, bye bye
 	return 0;
