@@ -7,10 +7,12 @@ class GameEngine {
   public:
     GameEngine(CL_DisplayWindow&, CL_GraphicContext&, CL_InputDevice&);
     bool run();
+    void shutdown();
   private:
     bool running;
     CL_DisplayWindow window;
     CL_GraphicContext graphics;
     CL_InputDevice keyboard;
+    CL_Slot window_close_slot;
     
 };

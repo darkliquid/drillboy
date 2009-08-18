@@ -11,7 +11,8 @@ GameEngine::GameEngine(CL_DisplayWindow& dw, CL_GraphicContext& gc, CL_InputDevi
   graphics = gc;
   keyboard = id;
   running = true;
-
+  // Connect the window close signal to the shutdown method
+  window_close_slot = window.sig_window_close().connect(this, &GameEngine::shutdown);
 }
 
 bool GameEngine::run() {
@@ -38,4 +39,9 @@ bool GameEngine::run() {
 	CL_System::sleep(10);
 	
   return running;
+}
+
+void GameEngine::shutdown() {
+  CL_Console::write_line("Shutting down game engine...");
+  running = false;
 }
