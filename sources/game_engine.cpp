@@ -24,40 +24,40 @@ GameEngine::~GameEngine() {
 }
 
 bool GameEngine::run() {
-	if(!game_state) {
-		game_state = new TitleState(this);
-	}  
-	// check if the keyboard has escape pressed
-	if(keyboard.get_keycode(CL_KEY_ESCAPE)) {
-		// Output to console to say exit request received
-		CL_Console::write_line("Escape pressed, exiting...");
-		running = false; // get out of the infinite loop
-	}
+  if(!game_state) {
+    game_state = new TitleState(&*this);
+  }
+  // check if the keyboard has escape pressed
+  if(keyboard.get_keycode(CL_KEY_ESCAPE)) {
+    // Output to console to say exit request received
+    CL_Console::write_line("Escape pressed, exiting...");
+    running = false; // get out of the infinite loop
+  }
 
-	// do stuff for current game state
-	game_state->process();
-	
-	// swap the graphics buffers as everything is drawn
-	// off-screen by default (and rightly so)
-	// this is controlled by the window, not the graphics context
-	window.flip();
-	
-	// check gamestate to see if we need to transition to another one
-	if(game_state->transitioning()) {
-		GameState* temp_state = game_state->next_state();
-		delete game_state;
-		game_state = temp_state;
-	}
+  // do stuff for current game state
+  game_state->process();
 
-	// Process events from the OS windowing system,
-	// like closing the window, etc (GUESSING, not clear from docs)
-	CL_DisplayMessageQueue::process();
+  // swap the graphics buffers as everything is drawn
+  // off-screen by default (and rightly so)
+  // this is controlled by the window, not the graphics context
+  window.flip();
 
-	// This loop will take 100% CPU time as it's looping
-	// as fast as the system will allow. Make it sleep a
-	// bit so it's nicer to other processes
-	CL_System::sleep(10);
-		
+  // check gamestate to see if we need to transition to another one
+  if(game_state->transitioning()) {
+    GameState* temp_state = game_state->next_state();
+    delete game_state;
+    game_state = temp_state;
+  }
+
+  // Process events from the OS windowing system,
+  // like closing the window, etc (GUESSING, not clear from docs)
+  CL_DisplayMessageQueue::process();
+
+  // This loop will take 100% CPU time as it's looping
+  // as fast as the system will allow. Make it sleep a
+  // bit so it's nicer to other processes
+  CL_System::sleep(10);
+
   return running;
 }
 
