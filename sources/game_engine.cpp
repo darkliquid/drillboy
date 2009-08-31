@@ -39,7 +39,7 @@ bool GameEngine::run() {
   // swap the graphics buffers as everything is drawn
   // off-screen by default (and rightly so)
   // this is controlled by the window, not the graphics context
-  window.flip(1);
+  window.flip();
 
   // check gamestate to see if we need to transition to another one
   if(game_state->transitioning()) {

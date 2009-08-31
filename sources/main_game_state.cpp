@@ -7,7 +7,7 @@
 
 MainGameState::MainGameState(GameEngine* game_engine) : GameState(game_engine) {
   CL_Console::write_line("Entering main game state...");
-
+  // why isn't this having an effect when the class instanciates?
   engine->graphics.clear(CL_Colorf::black);
 }
 
