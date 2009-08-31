@@ -11,19 +11,19 @@
 #include "game_engine.h"
 
 int GameRunner::main(const std::vector<CL_String> &args) {
-	// Initialise clanlib by instanciating these classes.
-	// when the get stroyed after scope goes away, they clean
-	// themselves up (I think) so no need to deinitialise.
-	// We never actually use these variables again.	
-  
-  CL_SetupCore setup_core;
-	CL_SetupDisplay setup_display;
-	//CL_SetupGL1 setup_gl1; // use gl1 as opengl2 target breaks for me
-  CL_SetupSDL setup_sdl; // use sdl as render target
-	//CL_SetupGDI setup_gdi; // use gdi as render target
-			
+  // Initialise clanlib by instanciating these classes.
+  // when the get stroyed after scope goes away, they clean
+  // themselves up (I think) so no need to deinitialise.
+  // We never actually use these variables again.
 
-	try {
+  CL_SetupCore setup_core;
+  CL_SetupDisplay setup_display;
+  //CL_SetupGL1 setup_gl1; // use gl1 as opengl2 target breaks for me
+  CL_SetupSDL setup_sdl; // use sdl as render target
+  //CL_SetupGDI setup_gdi; // use gdi as render target
+
+
+  try {
     // Set the window description
     CL_DisplayWindowDescription desc;
     desc.set_title("Drillboy");
@@ -36,7 +36,7 @@ int GameRunner::main(const std::vector<CL_String> &args) {
     // drawing functions on
     CL_GraphicContext graphics = window.get_gc();
 
-    // Grab the keyboard so we can ask it about key presses 
+    // Grab the keyboard so we can ask it about key presses
     CL_InputDevice keyboard = window.get_ic().get_keyboard();
 
     // Tell console (as in, text-based debug output) we are good to go
@@ -59,22 +59,22 @@ int GameRunner::main(const std::vector<CL_String> &args) {
     return 0;
   } catch(CL_Exception exception) {
     // output the exception's message
-		CL_Console::write_line("ClanLib Exception caught:");
-		CL_Console::write_line(exception.message);
-				
+    CL_Console::write_line("ClanLib Exception caught:");
+    CL_Console::write_line(exception.message);
+
     // Display the stack trace associated with the exception (it's an array of strings)
-		std::vector<CL_String> stacktrace = exception.get_stack_trace();
-		int size = stacktrace.size(); // get it's size
-		// if there is a stacktrace (because it has at least 1 line)
-		// then iterate through the vector and output each line
-		if (stacktrace.size() > 0) {
-			CL_Console::write_line("Stack Trace:");
-			for(std::vector<CL_String>::iterator line = stacktrace.begin(); 
-			    line != stacktrace.end(); ++line) {
-				CL_Console::write_line(*line);
-			}
-		}
-				
-		return -1;
-	}
+    std::vector<CL_String> stacktrace = exception.get_stack_trace();
+    int size = stacktrace.size(); // get it's size
+    // if there is a stacktrace (because it has at least 1 line)
+    // then iterate through the vector and output each line
+    if (stacktrace.size() > 0) {
+      CL_Console::write_line("Stack Trace:");
+      for(std::vector<CL_String>::iterator line = stacktrace.begin();
+          line != stacktrace.end(); ++line) {
+        CL_Console::write_line(*line);
+      }
+    }
+
+    return -1;
+  }
 }

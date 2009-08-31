@@ -25,6 +25,8 @@ GameEngine::~GameEngine() {
 
 bool GameEngine::run() {
   if(!game_state) {
+    // deferencing pointer to this and passing engine by reference
+    // at least, I'm pretty sure that's what I'm doing here
     game_state = new TitleState(&*this);
   }
   // check if the keyboard has escape pressed
@@ -34,20 +36,21 @@ bool GameEngine::run() {
     running = false; // get out of the infinite loop
   }
 
-  // do stuff for current game state
-  game_state->process();
-
   // swap the graphics buffers as everything is drawn
   // off-screen by default (and rightly so)
   // this is controlled by the window, not the graphics context
-  window.flip();
+  window.flip(1);
 
   // check gamestate to see if we need to transition to another one
   if(game_state->transitioning()) {
+    CL_Console::write_line("Entering new state...");
     GameState* temp_state = game_state->next_state();
     delete game_state;
     game_state = temp_state;
   }
+
+  // do stuff for current game state
+  game_state->process();
 
   // Process events from the OS windowing system,
   // like closing the window, etc (GUESSING, not clear from docs)

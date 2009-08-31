@@ -12,7 +12,11 @@ class TitleState : public GameState {
     TitleState(GameEngine*);
     void process();
   private:
+    void process_input();
     CL_Sprite clanlib_logo;
+    CL_Font_System font;
+    int option_selected;
+
 };
 
 #endif
