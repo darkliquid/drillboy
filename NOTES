@@ -1,0 +1,82 @@
+NOTES
+=====
+
+The following is random ideas and thoughts about the game.
+
+
+block destruction algorithm for mr.driller pseudo-code-esque:
+
+enum block_state {
+  STABLE,
+  SHAKING,
+  BREAKABLE,
+  SLIGHTLY_BROKEN,
+  BROKEN,
+  AWAITING_CLEANUP
+}
+
+enum block_type {
+  TYPE_1,
+  TYPE_2,
+  TYPE_3,
+  TYPE_4
+}
+
+class Block {
+  public:
+    void destroy();
+  private:
+    BlockManager parent;
+    int x, y;
+    int state;
+    int type;
+}
+
+void Block::destroy() {
+  switch(state) {
+    case BREAKABLE:
+      state = SLIGHTLY_BROKEN;
+      return;
+    case SLIGHTLY_BROKEN:
+      state = BROKEN;
+      return;
+    case AWAITING_CLEANUP: // this case should never happen, but better safe than sorry
+      return;
+  }
+  
+  // if it's not any of those, actually destroy the block and all matching adjacent ones
+  state = AWAITING_CLEANUP;
+  std::vector<Block> blocks = parent.get_adjacent_blocks(x, y);
+  for(vector<Block>::iterator block = blocks.begin(); block < blocks.end(); block++) {
+    if(block->get_type() == type && block->get_state() != AWAITING_CLEANUP) {
+      block->destroy();
+    }
+  }  
+}
+
+class BlockManager {
+  public:
+    void drill(int, int);
+    void clean_up();
+    void apply_gravity();
+    std::vector<Block> get_adjacent_blocks(int, int);
+  private:
+    Block current_level[10][100];
+}
+
+std::vector<Block> BlockManager::get_adjacent_blocks(x,y) {
+  // do something to return a vector of blocks
+  // it will always be either 3 (in the case of being next to a wall) or 4 long
+}
+
+void BlockManager::drill(x,y) {
+  Block block = current_level[x][y];
+  if(block) {
+    // destroy the block
+    block.destroy();
+    // clean up blocks queued for destruction
+    clean_up();
+    // now tell the block manager to initiate falling procedures for remaining blocks
+    apply_gravity();    
+  } 
+}
