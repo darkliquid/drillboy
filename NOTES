@@ -51,7 +51,7 @@ void Block::destroy() {
     if(block->get_type() == type && block->get_state() != AWAITING_CLEANUP) {
       block->destroy();
     }
-  }  
+  }
 }
 
 class BlockManager {
@@ -67,6 +67,20 @@ class BlockManager {
 std::vector<Block> BlockManager::get_adjacent_blocks(x,y) {
   // do something to return a vector of blocks
   // it will always be either 3 (in the case of being next to a wall) or 4 long
+  std::vector<Block> blocks;
+  if(x > 0) {
+    blocks.push_back(current_level[x - 1][y]);
+  } 
+  if(x < WIDTH) {
+    blocks.push_back(current_level[x + 1][y]);
+  }
+  if(y > 0) {
+    blocks.push_back(current_level[x][y - 1]);
+  }
+  if(y < HEIGHT) {
+    blocks.push_back(current_level[x][y + 1]);
+  }
+  return blocks;
 }
 
 void BlockManager::drill(x,y) {
