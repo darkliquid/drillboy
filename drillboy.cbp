@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="drillboy" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/drillboy" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/drillboy" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="/usr/local/include/ClanLib-2.0" />
+		</Compiler>
+		<Linker>
+			<Add library="clanCore" />
+			<Add library="clanDisplay" />
+			<Add library="clanApp" />
+			<Add library="clanGL" />
+			<Add library="freetype" />
+			<Add library="fontconfig" />
+			<Add library="pthread" />
+			<Add directory="/usr/local/lib" />
+		</Linker>
+		<Unit filename="sources/game_engine.cpp" />
+		<Unit filename="sources/game_engine.h" />
+		<Unit filename="sources/game_runner.cpp" />
+		<Unit filename="sources/game_runner.h" />
+		<Unit filename="sources/game_state.cpp" />
+		<Unit filename="sources/game_state.h" />
+		<Unit filename="sources/main.cpp" />
+		<Unit filename="sources/main_game_state.cpp" />
+		<Unit filename="sources/main_game_state.h" />
+		<Unit filename="sources/title_state.cpp" />
+		<Unit filename="sources/title_state.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

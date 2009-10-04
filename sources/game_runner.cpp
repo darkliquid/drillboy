@@ -1,10 +1,10 @@
 // Include clanlib goodies
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include <ClanLib/gl1.h> // required to use gl1 render target
-#include <ClanLib/sdl.h> // required for sdl target
-#include <ClanLib/gdi.h> // required for gdi target
-
+//#include <ClanLib/gl1.h> // required to use gl1 render target
+//#include <ClanLib/sdl.h> // required for sdl target
+//#include <ClanLib/gdi.h> // required for gdi target
+#include <ClanLib/gl.h>
 
 // Include class prototype
 #include "game_runner.h"
@@ -19,9 +19,9 @@ int GameRunner::main(const std::vector<CL_String> &args) {
   CL_SetupCore setup_core;
   CL_SetupDisplay setup_display;
   //CL_SetupGL1 setup_gl1; // use gl1 as opengl2 target breaks for me
-  CL_SetupSDL setup_sdl; // use sdl as render target
+//  CL_SetupSDL setup_sdl; // use sdl as render target
   //CL_SetupGDI setup_gdi; // use gdi as render target
-
+  CL_SetupGL setup_gl;
 
   try {
     // Set the window description
