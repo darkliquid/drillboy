@@ -1433,9 +1433,10 @@
 	<ClanLib/core.h>
 	<ClanLib/display.h>
 
-1254668653 /home/darkliquid/Projects/C++/drillboy/sources/main_game_state.h
+1254671938 /home/darkliquid/Projects/C++/drillboy/sources/main_game_state.h
 	"game_state.h"
 	"game_engine.h"
+	"block_manager.h"
 	<ClanLib/core.h>
 	<ClanLib/display.h>
 
@@ -1497,4 +1498,18 @@
 	"api_gl.h"
 	"../Core/System/sharedptr.h"
 	"../Display/Render/graphic_context.h"
+
+1254671182 source:/home/darkliquid/Projects/C++/drillboy/sources/block.cpp
+	"block.h"
+
+1254672126 /home/darkliquid/Projects/C++/drillboy/sources/block.h
+	"block_manager.h"
+
+1254671034 /home/darkliquid/Projects/C++/drillboy/sources/block_manager.h
+	"block.h"
+	<vector>
+
+1254671217 source:/home/darkliquid/Projects/C++/drillboy/sources/block_manager.cpp
+	"block_manager.h"
+	<vector>
 

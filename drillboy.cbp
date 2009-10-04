@@ -43,6 +43,10 @@
 			<Add library="pthread" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
+		<Unit filename="sources/block.cpp" />
+		<Unit filename="sources/block.h" />
+		<Unit filename="sources/block_manager.cpp" />
+		<Unit filename="sources/block_manager.h" />
 		<Unit filename="sources/game_engine.cpp" />
 		<Unit filename="sources/game_engine.h" />
 		<Unit filename="sources/game_runner.cpp" />

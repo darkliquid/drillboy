@@ -3,6 +3,7 @@
 
 #include "game_state.h"
 #include "game_engine.h"
+#include "block_manager.h"
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
@@ -12,6 +13,7 @@ class MainGameState : public GameState {
     MainGameState(GameEngine*);
     void process();
   private:
+    BlockManager play_field;
 
 };
 
