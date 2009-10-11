@@ -41,6 +41,11 @@
 			<Add library="freetype" />
 			<Add library="fontconfig" />
 			<Add library="pthread" />
+			<Add library="clanGL1" />
+			<Add library="clanGDI" />
+			<Add library="clanSDL" />
+			<Add library="SDL" />
+			<Add library="SDL_gfx" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
 		<Unit filename="sources/block.cpp" />
